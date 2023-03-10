@@ -1,0 +1,23 @@
+.main-content {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.main-card {
+  width: 25%;
+  padding: 15px;
+  margin: 20px;
+  border-radius: 0.25rem;
+  position: relative;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+.main-card:hover {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
+  color: darkslategray;
+}

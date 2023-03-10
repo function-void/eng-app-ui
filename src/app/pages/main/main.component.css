@@ -1,0 +1,55 @@
+nz-layout {
+  height: 100%;
+}
+
+nz-content {
+  background: #fff;
+  padding: 10px 50px;
+}
+
+nz-footer {
+  text-align: center;
+}
+
+.light {
+  background: #fff;
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(251,251,224,1) 48%, rgba(242,222,106,1) 100%);
+}
+
+.dark {
+  color: #fff;
+  background: #001529;
+  background: linear-gradient(90deg, rgba(0, 21, 41, 1) 0%, rgba(3, 0, 41, 1) 57%, rgba(0, 108, 255, 1) 100%);
+}
+
+.text-light {
+  color: #fff;
+}
+
+.border-bottom-style {
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(0.25turn, rgba(255, 249, 34), rgba(255, 0, 128), rgba(56, 2, 155, 0));
+  border-image-slice: 1;
+}
+
+.border-top-style {
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(0.25turn, rgba(255, 249, 34), rgba(255, 0, 128), rgba(56, 2, 155, 0));
+  border-image-slice: 1;
+}
+
+.menu {
+  box-shadow: 3px 0px 3px 0px rgba(128, 46, 19, 0.65);
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}

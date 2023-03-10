@@ -1,0 +1,35 @@
+<nz-layout>
+  <nz-header class="border-bottom-style" [ngClass]="{'dark': theme, 'light': !theme}">
+    <nz-switch [(ngModel)]="theme">
+      <span checked>Dark</span>
+      <span unchecked>Light</span>
+    </nz-switch>
+
+    <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+    (click)="isCollapsed = !isCollapsed"></span>
+  </nz-header>
+  <nz-layout>
+    <nz-sider class="menu" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" nzWidth="250px"
+      [nzTheme]="theme ? 'dark' : 'light'">
+      <ul *ngIf="isMenuLoad" nz-menu nzMode="inline" [nzTheme]="theme ? 'dark' : 'light'">
+        <ng-template ngFor let-course [ngForOf]="courses">
+          <li nz-submenu nzTitle="{{course.name}}" nzIcon="{{getIconName(course.name)}}">
+            <ul>
+              <li nz-menu-item *ngFor="let group of course.groups">
+               <span>{{group.name}}</span>
+              </li>
+            </ul>
+          </li>
+        </ng-template>
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-content>
+        <router-outlet></router-outlet>
+      </nz-content>
+      <nz-footer class="border-top-style" [ngClass]="{'dark': theme, 'light': !theme}">
+        <h2 [ngClass]="{'text-light': theme}">English App {{currentYear}}</h2>
+      </nz-footer>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

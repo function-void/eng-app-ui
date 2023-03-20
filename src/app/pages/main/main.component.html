@@ -1,12 +1,16 @@
 <nz-layout>
-  <nz-header class="border-bottom-style" [ngClass]="{'dark': theme, 'light': !theme}">
-    <nz-switch [(ngModel)]="theme">
-      <span checked>Dark</span>
-      <span unchecked>Light</span>
-    </nz-switch>
-
-    <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-    (click)="isCollapsed = !isCollapsed"></span>
+  <nz-header nz-row class="border-bottom-style" [ngClass]="{'dark': theme, 'light': !theme}">
+    <div nz-col nzFlex="80px" class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+      (click)="isCollapsed = !isCollapsed">
+    </div>
+    <div nz-col nz-row nzFlex="auto" nzJustify="center">
+      <div nz-col>
+        <nz-switch [(ngModel)]="theme">
+          <span checked>Dark</span>
+          <span unchecked>Light</span>
+        </nz-switch>
+      </div>
+    </div>
   </nz-header>
   <nz-layout>
     <nz-sider class="menu" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" nzWidth="250px"
@@ -16,7 +20,7 @@
           <li nz-submenu nzTitle="{{course.name}}" nzIcon="{{getIconName(course.name)}}">
             <ul>
               <li nz-menu-item *ngFor="let group of course.groups">
-               <span>{{group.name}}</span>
+                <span>{{group.name}}</span>
               </li>
             </ul>
           </li>

@@ -1,0 +1,33 @@
+nz-layout {
+  height: 100%;
+}
+
+nz-content {
+  background: #fff;
+  padding: 10px 50px;
+}
+
+.login-box {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.login-form {
+  max-width: 500px;
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}

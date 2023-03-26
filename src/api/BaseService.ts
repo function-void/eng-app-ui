@@ -13,15 +13,9 @@ export abstract class BaseService {
   constructor(protected http: HttpClient) {
   }
 
-  httpHeaders = {
-    json: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  };
-
   protected get<T>(uri?: string, parameters?: any): Observable<T> {
     const params = this.getUrlParams(parameters);
-    return this.http.get<T>(`${this.url}/${this.prefixUrl}/${uri ?? ""}`, { params: params, headers: this.httpHeaders.json });
+    return this.http.get<T>(`${this.url}/${this.prefixUrl}/${uri ?? ""}`, { params: params});
   }
 
   protected post(uri: string, body: any, options?: any): Observable<any> {

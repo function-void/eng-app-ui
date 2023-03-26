@@ -4,6 +4,7 @@ import { BaseService } from "../BaseService";
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../model/Login';
 import { LoginResponse } from '../model/LoginResponse';
+import { BaseResponse } from '../model/BaseResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService extends BaseService {
     super(http);
   }
 
-  login(login: Login): Observable<LoginResponse> {
+  login(login: Login): Observable<BaseResponse<LoginResponse>> {
     return this.post('login', login);
   }
 }

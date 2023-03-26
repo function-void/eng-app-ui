@@ -19,8 +19,10 @@
         <ng-template ngFor let-course [ngForOf]="courses">
           <li nz-submenu nzTitle="{{course.name}}" nzIcon="{{getIconName(course.name)}}">
             <ul>
-              <li nz-menu-item *ngFor="let group of course.groups">
-                <span>{{group.name}}</span>
+              <li nz-menu-item *ngFor="let group of course.groups | sortByOrder">
+                <div (click)="navigateToLesson(course.name.toLowerCase(), group)">
+                  <h5 [ngClass]="{'text-light': theme}">{{group.name}} </h5>
+                </div>
               </li>
             </ul>
           </li>
@@ -28,7 +30,13 @@
       </ul>
     </nz-sider>
     <nz-layout>
-      <nz-content>
+      <nz-content class="scroll">
+        <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+          <nz-breadcrumb-item>
+            <a routerLink="/"><span nz-icon nzType="home"></span></a>
+          </nz-breadcrumb-item>
+        </nz-breadcrumb>
+        <nz-divider></nz-divider>
         <router-outlet></router-outlet>
       </nz-content>
       <nz-footer class="border-top-style" [ngClass]="{'dark': theme, 'light': !theme}">

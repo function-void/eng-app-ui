@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../../../api/services/AuthService';
 import { Login } from '../../../api/model/Login';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-auth',
@@ -20,7 +22,8 @@ export class AuthComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private loginService: AuthService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private messageService: NzMessageService,) {
   }
 
   ngOnInit(): void {
@@ -38,21 +41,25 @@ export class AuthComponent implements OnInit {
     }
 
     if (this.validateForm.valid) {
+
       const login: Login = {
         email: this.validateForm.value.email,
         password: this.validateForm.value.password
       };
+
       this.isLoading = true;
       localStorage.removeItem('token');
-      this.loginService.login(login).subscribe(data => {
-        if (data) {
-          localStorage.setItem('token', data.token);
+
+      this.loginService.login(login).pipe(take(1)).subscribe(response => {
+        if (response.succeeded) {
+          localStorage.setItem('token', response.data.token);
           this.router.navigate(['']);
         } else {
           this.isLoading = false;
+          this.messageService.error(response.message);
         }
       }, error => {
-        console.log(error);
+        this.messageService.error(error.error.message);
         this.isLoading = false;
       });
     }

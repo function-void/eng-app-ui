@@ -1,8 +1,11 @@
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, take } from 'rxjs/operators';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CourseService } from '../../../api/services/CourseService';
+import { Router } from '@angular/router';
 import { Course } from '../../../api/model/Course';
+import { Group } from '../../../api/model/Group';
+import { CourseService } from '../../../api/services/CourseService';
+import { DataService } from 'src/api/services/DataService';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +21,11 @@ export class MainComponent implements OnInit, OnDestroy {
   isMenuLoad: boolean = true;
   courses: Course[] = [];
 
-  constructor(private courseService: CourseService) { }
+  constructor(
+    private courseService: CourseService,
+    private groupTokenService: DataService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.currentYear = (new Date()).getFullYear();
@@ -34,7 +41,6 @@ export class MainComponent implements OnInit, OnDestroy {
     this.courseService.geAllCourse().pipe(takeUntil(this.unsubscribe)).subscribe(x => {
       this.courses = x;
       this.isMenuLoad = true;
-      console.log(this.courses)
     })
   }
 
@@ -47,4 +53,12 @@ export class MainComponent implements OnInit, OnDestroy {
       default: return "appstore";
     }
   })
+
+  navigateToLesson(courseName: string, group: Group) {
+    this.groupTokenService.GroupToken = group.token;
+    this.router.navigate([courseName, 'lesson'])
+    .then(() => {
+      window.location.reload();
+    });
+  }
 }

@@ -1,0 +1,8 @@
+<ng-template ngFor let-lesson [ngForOf]="units | sortByOrder">
+  <div class="card">
+    <div class="card-details">
+      <p class="text-title">{{lesson.title}} {{lesson.sortOrder}}</p>
+      <p class="text-body">{{lesson.description}}</p>
+    </div>
+  </div>
+</ng-template>

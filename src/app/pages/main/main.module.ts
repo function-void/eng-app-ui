@@ -3,31 +3,25 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzSwitchModule } from 'ng-zorro-antd/switch';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzSpaceModule } from 'ng-zorro-antd/space';
-import { NzGridModule } from 'ng-zorro-antd/grid';
 import { DefaultComponent } from './default/default.component'
+import { ListeningComponent } from './listening/listening.component';
+import { SpeakingComponent } from './speaking/speaking.component';
+import { VocabularyComponent } from './vocabulary/vocabulary.component';
+import { SharedModule } from "../../core/shared/shared.module";
 
 @NgModule({
   declarations: [
     MainComponent,
     DefaultComponent,
+    ListeningComponent,
+    SpeakingComponent,
+    VocabularyComponent,
   ],
   imports: [
     MainRoutingModule,
-    CommonModule,
     FormsModule,
-    NzMenuModule,
-    NzLayoutModule,
-    NzSwitchModule,
-    NzIconModule,
-    NzSkeletonModule,
-    NzSpaceModule,
-    NzGridModule,
+    CommonModule,
+    SharedModule
   ]
 })
 export class MainModule { }

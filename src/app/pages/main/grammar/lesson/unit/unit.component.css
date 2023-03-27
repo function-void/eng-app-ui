@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap');
+
 .card {
-  width: 200px;
-  height: 175px;
+  width: 250px;
+  height: 200px;
   border-radius: 20px;
   background: #fff;
   position: relative;
@@ -8,6 +10,7 @@
   border: 2px solid #c3c6ce;
   transition: 0.5s ease-out;
   overflow: visible;
+  margin-right: 20px;
  }
 
  .card-details {

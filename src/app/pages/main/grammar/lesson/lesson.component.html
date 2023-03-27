@@ -1,14 +1,16 @@
 <nz-tabset>
   <ng-template ngFor let-level [ngForOf]="englishLevels">
-    <nz-tab nzTitle="{{level.name}} - {{level.code}}">
-      <ng-template ngFor let-lesson [ngForOf]="lessons | filter : 'levelCode' : level.code | sortByOrder">
-        <div class="card" (click)="navigateUnit(lesson)">
-          <div class="card-details">
-            <p class="text-title">{{lesson.title}} {{lesson.sortOrder}}</p>
-            <p class="text-body">{{lesson.description}}</p>
+    <div nz-row nzJustify="start" nzAlign="middle">
+      <nz-tab nzTitle="{{level.name}} - {{level.code}}">
+        <ng-template ngFor let-lesson [ngForOf]="lessons | filter : 'levelCode' : level.code | sortByOrder">
+          <div nz-col class="card" (click)="navigateUnit(lesson)">
+            <div class="card-details">
+              <p class="text-title">{{lesson.title}} {{lesson.sortOrder}}</p>
+              <p class="text-body">{{lesson.description}}</p>
+            </div>
           </div>
-        </div>
-      </ng-template>
-    </nz-tab>
+        </ng-template>
+      </nz-tab>
+    </div>
   </ng-template>
 </nz-tabset>

@@ -12,6 +12,10 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzTimelineModule } from 'ng-zorro-antd/timeline';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { SortByOrderPipe } from "./pipes/sort-by-order.pipe"
 import { FilterPipe } from './pipes/filter.pipe';
 
@@ -33,7 +37,11 @@ const NG_ZORRO_MODULES = [
   NzDividerModule,
   NzBadgeModule,
   NzCardModule,
-  NzTabsModule
+  NzTabsModule,
+  NzTimelineModule,
+  NzListModule,
+  NzTypographyModule,
+  NzButtonModule
 ];
 
 @NgModule({

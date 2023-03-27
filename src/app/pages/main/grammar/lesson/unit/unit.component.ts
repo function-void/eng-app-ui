@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Unit } from 'src/api/model/Unit';
 import { UnitService } from 'src/api/services/UnitService';
 import { DataService } from 'src/api/services/DataService';
+import { Source } from 'src/api/model/Source';
 
 @Component({
   selector: 'app-unit',
@@ -13,7 +14,9 @@ import { DataService } from 'src/api/services/DataService';
 export class UnitComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject<void>();
 
+  isVisibleSources: boolean = false;
   units: Unit[] = [];
+  selectedUnit: Unit = {} as Unit;
 
   constructor(
     private unitService: UnitService,
@@ -29,10 +32,14 @@ export class UnitComponent implements OnInit, OnDestroy {
     this.unsubscribe.complete();
   }
 
+  showSourceContent(unit: Unit) {
+    this.isVisibleSources = !this.isVisibleSources
+    this.selectedUnit = unit;
+  }
+
   getUnits() {
     this.unitService.getUnits(this.dataService.LessonId).pipe(takeUntil(this.unsubscribe)).subscribe(x => {
       this.units = x;
-      console.log(x)
     })
   }
 }

@@ -1,8 +1,17 @@
-<ng-template ngFor let-lesson [ngForOf]="units | sortByOrder">
-  <div class="card">
-    <div class="card-details">
-      <p class="text-title">{{lesson.title}} {{lesson.sortOrder}}</p>
-      <p class="text-body">{{lesson.description}}</p>
+<div *ngIf="!isVisibleSources" nz-row nzJustify="start" nzAlign="middle">
+  <ng-template ngFor let-unit [ngForOf]="units | sortByOrder">
+    <div nz-col class="card" (click)="showSourceContent(unit)">
+      <div class="card-details">
+        <p class="text-title">{{unit.title}}</p>
+      </div>
     </div>
-  </div>
+  </ng-template>
+</div>
+
+<ng-template [ngIf]="isVisibleSources">
+  <button nz-button nzType="default" (click)="isVisibleSources = !isVisibleSources">
+    <span nz-icon nzType="left"></span>
+  </button>
+  <h1 style="font-family: 'Lato', sans-serif; text-align: center;">{{selectedUnit.title}}</h1>
+  <app-source [sources]="selectedUnit.sources"></app-source>
 </ng-template>

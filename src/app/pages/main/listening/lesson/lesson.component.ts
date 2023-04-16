@@ -25,13 +25,10 @@ export class LessonComponent implements OnInit, OnDestroy {
     private dictionaryService: DictionaryService,
     private router: Router,
     private route: ActivatedRoute) {
+
   }
 
   ngOnInit(): void {
-    this.dataService.subscriber$.pipe(takeUntil(this.unsubscribe)).subscribe(data => {
-      this.getLessons();
-    });
-
     this.getLessons();
     this.getAllLevels();
   }

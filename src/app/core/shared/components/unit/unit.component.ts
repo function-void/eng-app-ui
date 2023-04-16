@@ -4,7 +4,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Unit } from 'src/api/model/Unit';
 import { UnitService } from 'src/api/services/UnitService';
 import { DataService } from 'src/api/services/DataService';
-import { Source } from 'src/api/model/Source';
 
 @Component({
   selector: 'app-unit',

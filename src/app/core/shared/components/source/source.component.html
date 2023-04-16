@@ -1,0 +1,12 @@
+<nz-list nzBordered>
+  <ng-template ngFor let-source [ngForOf]="sources | sortByOrder">
+    <nz-list-item [ngSwitch]="source.type">
+      <pre *ngSwitchCase="type.Text">
+        <h4 class="text-style">{{source.sortOrder}}. {{source.content}}</h4>
+      </pre>
+      <div *ngSwitchCase="type.YouTubeVideoUrl">
+        <app-youtube [inputVideoId]="source.content"></app-youtube>
+      </div>
+    </nz-list-item>
+  </ng-template>
+</nz-list>

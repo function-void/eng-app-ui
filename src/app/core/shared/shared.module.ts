@@ -1,4 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
@@ -16,8 +18,24 @@ import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { SortByOrderPipe } from "./pipes/sort-by-order.pipe"
+
+import { SortByOrderPipe } from "./pipes/sort-by-order.pipe";
 import { FilterPipe } from './pipes/filter.pipe';
+
+import { YoutubeComponent } from './components/youtube/youtube.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
+import { TaskComponent } from './components/task/task.component';
+import { UnitComponent } from './components/unit/unit.component';
+import { SourceComponent } from './components/source/source.component';
+
+
+const COMPONENTS = [
+  YoutubeComponent,
+  TaskComponent,
+  UnitComponent,
+  SourceComponent
+];
 
 const PIPES = [
   SortByOrderPipe,
@@ -46,14 +64,19 @@ const NG_ZORRO_MODULES = [
 
 @NgModule({
   declarations: [
-    ...PIPES
+    ...PIPES,
+    ...COMPONENTS,
+    TaskComponent,
   ],
   imports: [
     NG_ZORRO_MODULES,
+    YouTubePlayerModule,
+    CommonModule
   ],
   exports: [
     ...PIPES,
     NG_ZORRO_MODULES,
+    ...COMPONENTS,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

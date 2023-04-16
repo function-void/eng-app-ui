@@ -1,14 +1,14 @@
 <div nz-row nzJustify="space-evenly" nzAlign="middle">
-  <div nz-col class="gutter-row main-card" [nzSpan]="8" routerLink="/grammar">
+  <div nz-col class="gutter-row main-card" [nzSpan]="8" (click)="navigateToGroups('grammar')">
     <h1 style="text-align: center;">Grammar</h1>
   </div>
-  <div nz-col class="gutter-row main-card" [nzSpan]="8" routerLink="/vocabulary">
+  <div nz-col class="gutter-row main-card" [nzSpan]="8" (click)="navigateToGroups('vocabulary')">
     <h1 style="text-align: center;">Vocabulary</h1>
   </div>
-  <div nz-col class="gutter-row main-card" [nzSpan]="8" routerLink="/listening">
+  <div nz-col class="gutter-row main-card" [nzSpan]="8" (click)="navigateToGroups('listening')">
     <h1 style="text-align: center;">Listening</h1>
   </div>
-  <div nz-col class="gutter-row main-card" [nzSpan]="8" routerLink="/speaking">
+  <div nz-col class="gutter-row main-card" [nzSpan]="8" (click)="navigateToGroups('speaking')">
     <h1 style="text-align: center;">Speaking</h1>
   </div>
 </div>

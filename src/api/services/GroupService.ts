@@ -14,7 +14,7 @@ export class GroupService extends BaseService {
     super(http);
   }
 
-  geAllGroups(courseId?: number): Observable<Group[]> {
+  getAllGroups(courseId?: number): Observable<Group[]> {
     return this.get('', { courseId });
   }
 }

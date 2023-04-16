@@ -14,7 +14,7 @@ export class LessonService extends BaseService {
     super(http);
   }
 
-  geAllLessons(groupToken?: string): Observable<Lesson[]> {
+  getAllLessons(groupToken?: string): Observable<Lesson[]> {
     return this.get('', { groupToken });
   }
 }

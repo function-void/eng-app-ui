@@ -26,7 +26,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
           localStorage.removeItem('token');
           this.messageService.error(error.error.Message);
           this.redirectLoginPage();
-        }, 1000);
+        }, 500);
       }
     }));
   }

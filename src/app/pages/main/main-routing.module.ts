@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
 import { DefaultComponent } from './default/default.component';
-import { ListeningComponent } from "./listening/listening.component";
-import { SpeakingComponent } from "./speaking/speaking.component";
-import { VocabularyComponent } from "./vocabulary/vocabulary.component";
 
 const routes: Routes = [
   {
@@ -22,17 +19,17 @@ const routes: Routes = [
       },
       {
         path: 'vocabulary',
-        component: VocabularyComponent,
+        loadChildren: () => import('./vocabulary/vocabulary.module').then(m => m.VocabularyModule),
         data: { breadcrumb: 'Vocabulary' }
       },
       {
         path: 'listening',
-        component: ListeningComponent,
+        loadChildren: () => import('./listening/listening.module').then(m => m.ListeningModule),
         data: { breadcrumb: 'Listening' }
       },
       {
         path: 'speaking',
-        component: SpeakingComponent,
+        loadChildren: () => import('./speaking/speaking.module').then(m => m.SpeakingModule),
         data: { breadcrumb: 'Speaking' }
       }
     ]

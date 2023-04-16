@@ -14,7 +14,7 @@ export class CourseService extends BaseService {
     super(http);
   }
 
-  geAllCourse(): Observable<Course[]> {
+  getAllCourse(): Observable<Course[]> {
     return this.get();
   }
 }

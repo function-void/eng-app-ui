@@ -1,7 +1,8 @@
 import { Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 import { Course } from '../../../api/model/Course';
 import { Group } from '../../../api/model/Group';
 import { CourseService } from '../../../api/services/CourseService';
@@ -23,9 +24,10 @@ export class MainComponent implements OnInit, OnDestroy {
 
   constructor(
     private courseService: CourseService,
-    private groupTokenService: DataService,
+    private dataService: DataService,
     private router: Router,
-    ) { }
+    @Inject(DOCUMENT) private document: Document
+  ) { }
 
   ngOnInit(): void {
     this.currentYear = (new Date()).getFullYear();
@@ -38,14 +40,15 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   getAllCourse() {
-    this.courseService.geAllCourse().pipe(takeUntil(this.unsubscribe)).subscribe(x => {
+    this.courseService.getAllCourse().pipe(takeUntil(this.unsubscribe)).subscribe(x => {
       this.courses = x;
+      this.dataService.Courses = x;
       this.isMenuLoad = true;
     })
   }
 
   getIconName = ((courseName: string): string => {
-    switch(courseName.toLowerCase()){
+    switch (courseName.toLowerCase()) {
       case "grammar": return "form";
       case "vocabulary": return "book";
       case "listening": return "sound";
@@ -54,11 +57,20 @@ export class MainComponent implements OnInit, OnDestroy {
     }
   })
 
-  navigateToLesson(courseName: string, group: Group) {
-    this.groupTokenService.GroupToken = group.token;
-    this.router.navigate([courseName, 'lesson'])
-    .then(() => {
-      window.location.reload();
-    });
+  navigateToLesson(courseName: string, courseid: number, group: Group) {
+    this.dataService.GroupToken = group.token;
+    this.dataService.CourseId = courseid;
+    let currentUrl = `${this.document.location.origin}${this.router.url}`;
+    let nextUrl = `${this.document.location.origin}/${courseName}/lesson`;
+    console.log(currentUrl)
+    console.log(nextUrl)
+    if (currentUrl === nextUrl) {
+      this.dataService.refresh("gg")
+    } else {
+      this.router.navigate([courseName, 'lesson']);
+      // .then(() => {
+      //   window.location.reload();
+      // });
+    }
   }
 }

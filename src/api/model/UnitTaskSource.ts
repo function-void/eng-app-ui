@@ -8,4 +8,5 @@ export interface UnitTaskSource {
   value?: string;
   key?: string;
   unitTaskId: number;
+  rightAnswer?: boolean;
 }

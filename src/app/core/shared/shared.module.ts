@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -18,6 +19,7 @@ import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 import { SortByOrderPipe } from "./pipes/sort-by-order.pipe";
 import { FilterPipe } from './pipes/filter.pipe';
@@ -28,13 +30,17 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { TaskComponent } from './components/task/task.component';
 import { UnitComponent } from './components/unit/unit.component';
 import { SourceComponent } from './components/source/source.component';
+import { MissedWordComponent } from './components/task/missed-word/missed-word.component';
+import { NegativeFormComponent } from './components/task/negative-form/negative-form.component';
 
 
 const COMPONENTS = [
   YoutubeComponent,
   TaskComponent,
   UnitComponent,
-  SourceComponent
+  SourceComponent,
+  MissedWordComponent,
+  NegativeFormComponent
 ];
 
 const PIPES = [
@@ -59,19 +65,20 @@ const NG_ZORRO_MODULES = [
   NzTimelineModule,
   NzListModule,
   NzTypographyModule,
-  NzButtonModule
+  NzButtonModule,
+  NzInputModule
 ];
 
 @NgModule({
   declarations: [
     ...PIPES,
     ...COMPONENTS,
-    TaskComponent,
   ],
   imports: [
     NG_ZORRO_MODULES,
     YouTubePlayerModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     ...PIPES,

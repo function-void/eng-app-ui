@@ -17,8 +17,8 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     if (key == null) {
       this.redirectLoginPage();
     }
-    var cloneRequest = this.addToken(request, key);
 
+    var cloneRequest = this.addToken(request, key);
     return next.handle(cloneRequest).pipe(tap((event: HttpEvent<any>) => {
     }, (error) => {
       if (error.status === 401) {
@@ -37,7 +37,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
       setHeaders: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       }
     });
     return clone;

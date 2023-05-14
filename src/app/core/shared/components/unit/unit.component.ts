@@ -34,7 +34,6 @@ export class UnitComponent implements OnInit, OnDestroy {
   showSourceContent(unit: Unit) {
     this.isVisibleSources = !this.isVisibleSources
     this.selectedUnit = unit;
-    console.log(this.selectedUnit)
   }
 
   getUnits() {

@@ -3,24 +3,26 @@
     <h2 class="title-style">Task {{task.sortOrder}} {{task.title}}</h2>
     <nz-timeline>
       <ng-template ngFor let-source [ngForOf]="task.sources | sortByOrder">
-        <nz-timeline-item [ngSwitch]="source.type" [nzDot]="">
+        <nz-timeline-item [ngSwitch]="source.type"
+          [nzDot]="source.rightAnswer === undefined ? undefined : source.rightAnswer ? checkCircle : wrongCircle">
           <div *ngSwitchCase="type.MissedWord">
-            <h4 class="text-style">{{source.sortOrder}}. {{source.content}}</h4>
+            <app-missed-word [source]="source" [checkAnswers]="checkAnswers"></app-missed-word>
           </div>
           <div *ngSwitchCase="type.NegativeForm">
-            <h4 class="text-style">{{source.sortOrder}}. {{source.content}}</h4>
+            <app-negative-form [source]="source" [checkAnswers]="checkAnswers"></app-negative-form>
           </div>
           <div *ngSwitchCase="type.Text">
             <h4 class="text-style">{{source.sortOrder}}. {{source.content}}</h4>
           </div>
           <div *ngSwitchCase="type.Base64Image">
             <div>{{source.sortOrder}}.</div>
-            <img [src]="getImage(source.content)">
+            <div><img width="100%" [src]="getImage(source.content)"></div>
           </div>
         </nz-timeline-item>
       </ng-template>
       <div style="justify-content: center; display: flex;">
-        <button nz-button style="align-self: center;" nzSize="large" nzType="primary" nzShape="round">Check</button>
+        <button nz-button style="align-self: center;" nzSize="large" nzType="primary" nzShape="round"
+          (click)="checkByTask(task)">Check</button>
       </div>
     </nz-timeline>
     <ng-template #checkCircle>

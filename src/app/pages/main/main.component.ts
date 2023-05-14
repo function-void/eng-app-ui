@@ -21,6 +21,7 @@ export class MainComponent implements OnInit, OnDestroy {
   currentYear?: number;
   isMenuLoad: boolean = true;
   courses: Course[] = [];
+  user: any;
 
   constructor(
     private courseService: CourseService,
@@ -32,11 +33,17 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.currentYear = (new Date()).getFullYear();
     this.getAllCourse();
+    this.user = JSON.parse(localStorage.getItem('user')!);
   }
 
   ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/auth']);
   }
 
   getAllCourse() {
@@ -62,15 +69,10 @@ export class MainComponent implements OnInit, OnDestroy {
     this.dataService.CourseId = courseid;
     let currentUrl = `${this.document.location.origin}${this.router.url}`;
     let nextUrl = `${this.document.location.origin}/${courseName}/lesson`;
-    console.log(currentUrl)
-    console.log(nextUrl)
     if (currentUrl === nextUrl) {
-      this.dataService.refresh("gg")
+      this.dataService.refreshLessons("refresh lessons")
     } else {
       this.router.navigate([courseName, 'lesson']);
-      // .then(() => {
-      //   window.location.reload();
-      // });
     }
   }
 }

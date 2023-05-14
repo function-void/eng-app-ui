@@ -1,10 +1,26 @@
-nz-layout {
+.content-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
   height: 100%;
 }
 
-nz-content {
-  background: #fff;
+.img {
+  background-image: url('../../../assets/background-image.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.content-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
   padding: 10px 50px;
+  background: rgb(131, 58, 180, .5);
+  background: radial-gradient(circle, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(227, 136, 9, .5) 100%);
 }
 
 .login-box {
@@ -17,7 +33,12 @@ nz-content {
 }
 
 .login-form {
-  max-width: 500px;
+  background: #fff;
+  max-width: 800px;
+  border: 2px solid #c3c6ce;
+  border-radius: 20px;
+  padding: 1.8rem;
+  transition: 0.5s ease-out;
 }
 
 .login-form-margin {

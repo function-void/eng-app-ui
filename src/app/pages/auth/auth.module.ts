@@ -13,6 +13,8 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzImageModule } from 'ng-zorro-antd/image';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -30,7 +32,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzSkeletonModule,
     NzSpaceModule,
     NzGridModule,
-    NzButtonModule
+    NzButtonModule,
+    NzImageModule,
+    NzAvatarModule
   ]
 })
 export class AuthModule { }

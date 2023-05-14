@@ -16,9 +16,6 @@ export class DefaultComponent {
   navigateToGroups(courseName: string) {
     let courses = this.dataService.Courses;
     let course = courses.find(x => x.name.toLowerCase() == courseName.toLowerCase())
-    console.log(courseName)
-    console.log(courses)
-    console.log(course)
     this.dataService.CourseId = course!.id;
     this.router.navigate([courseName]);
   }

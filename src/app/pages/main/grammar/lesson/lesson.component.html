@@ -1,8 +1,8 @@
-<nz-tabset>
-  <ng-template ngFor let-level [ngForOf]="englishLevels">
+<div class="lessons-box">
+  <nz-tabset>
     <div nz-row nzJustify="start" nzAlign="middle">
-      <nz-tab nzTitle="{{level.name}} - {{level.code}}">
-        <ng-template ngFor let-lesson [ngForOf]="lessons | filter : 'levelCode' : level.code | sortByOrder">
+      <nz-tab nzTitle="All levels">
+        <ng-template ngFor let-lesson [ngForOf]="lessons | sortByOrder">
           <div nz-col class="card" (click)="navigateUnit(lesson)">
             <div class="card-details">
               <p class="text-title">{{lesson.title}} {{lesson.sortOrder}}</p>
@@ -10,7 +10,36 @@
             </div>
           </div>
         </ng-template>
+        <div *ngIf="lessons.length == 0">No lessons</div>
       </nz-tab>
     </div>
-  </ng-template>
-</nz-tabset>
+    <ng-template ngFor let-level [ngForOf]="englishLevels">
+      <div nz-row nzJustify="start" nzAlign="middle">
+        <nz-tab nzTitle="{{level.name}} - {{level.code}}">
+          <ng-template ngFor let-lesson [ngForOf]="lessons | filter : 'levelCode' : level.code | sortByOrder">
+            <div nz-col class="card" (click)="navigateUnit(lesson)">
+              <div class="card-details">
+                <p class="text-title">{{lesson.title}} {{lesson.sortOrder}}</p>
+                <p class="text-body">{{lesson.description}}</p>
+              </div>
+            </div>
+          </ng-template>
+        </nz-tab>
+      </div>
+    </ng-template>
+  </nz-tabset>
+</div>
+<nz-divider nzType="vertical"></nz-divider>
+<div class="lessons-box">
+  <nz-page-header nzTitle="Tests"></nz-page-header>
+  <div nz-row nzJustify="start" nzAlign="middle">
+    <ng-template ngFor let-test [ngForOf]="tests">
+      <div nz-col class="card" (click)="navigateGoogleDocs(test.url)">
+        <div class="card-details">
+          <p class="text-title">{{test.title}} {{test.sortOrder}}</p>
+          <p class="text-body">{{test.levelName}}</p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

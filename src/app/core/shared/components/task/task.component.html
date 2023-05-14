@@ -1,1 +1,33 @@
-<p>task works!</p>
+<ng-template ngFor let-task [ngForOf]="tasks | sortByOrder">
+  <div class="task-box">
+    <h2 class="title-style">Task {{task.sortOrder}} {{task.title}}</h2>
+    <nz-timeline>
+      <ng-template ngFor let-source [ngForOf]="task.sources | sortByOrder">
+        <nz-timeline-item [ngSwitch]="source.type" [nzDot]="">
+          <div *ngSwitchCase="type.MissedWord">
+            <h4 class="text-style">{{source.sortOrder}}. {{source.content}}</h4>
+          </div>
+          <div *ngSwitchCase="type.NegativeForm">
+            <h4 class="text-style">{{source.sortOrder}}. {{source.content}}</h4>
+          </div>
+          <div *ngSwitchCase="type.Text">
+            <h4 class="text-style">{{source.sortOrder}}. {{source.content}}</h4>
+          </div>
+          <div *ngSwitchCase="type.Base64Image">
+            <div>{{source.sortOrder}}.</div>
+            <img [src]="getImage(source.content)">
+          </div>
+        </nz-timeline-item>
+      </ng-template>
+      <div style="justify-content: center; display: flex;">
+        <button nz-button style="align-self: center;" nzSize="large" nzType="primary" nzShape="round">Check</button>
+      </div>
+    </nz-timeline>
+    <ng-template #checkCircle>
+      <span nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></span>
+    </ng-template>
+    <ng-template #wrongCircle>
+      <span nz-icon nzType="close-circle" [nzTheme]="'twotone'" [nzTwotoneColor]="'#DC143C'"></span>
+    </ng-template>
+  </div>
+</ng-template>

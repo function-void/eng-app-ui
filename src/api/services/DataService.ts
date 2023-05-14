@@ -64,7 +64,7 @@ export class DataService {
     this.coursesChanged.emit(value);
   }
 
-  refresh(data: any) {
+  refreshLessons(data: any) {
     this.observer.next(data);
   }
 }
